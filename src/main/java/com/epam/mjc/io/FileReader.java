@@ -9,9 +9,12 @@ public class FileReader {
         try (InputStream inputStream = new FileInputStream(file)) {
             return getProfile(inputStream);
         } catch (IOException e) {
-            System.out.println(e.getMessage());
+            return  createDefaultProfileOnError();
         }
-        return  new Profile();
+    }
+
+    private Profile createDefaultProfileOnError() {
+        return new Profile();
     }
 
     private static Profile getProfile(InputStream inputStream) throws IOException {
